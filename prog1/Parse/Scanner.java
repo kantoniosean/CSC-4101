@@ -35,7 +35,7 @@ public class Scanner {
 			ch = in.read();
 
 			// TODO: Skip white space and comments
-			if (ch == ' ' || ch == '\t' || ch == '\r' || ch == '\f') {
+			if (ch == ' ' || ch == '\t' || ch == '\r' || ch == '\f' || ch == '\n') {
 				// ignore
 				return getNextToken();
 			} else if (ch == ';') { // comment, skip everything until new line.
@@ -44,7 +44,7 @@ public class Scanner {
 						return null;
 					ch = in.read();
 				}
-				return new StrToken("\n");
+				return getNextToken();
 			}
 
 			// Return null on EOF
@@ -127,6 +127,7 @@ public class Scanner {
 					buf[i++] = (byte) ch;
 					ch = in.read();
 				}
+				in.unread(ch);
 				return new IdentToken(buf.toString());
 			}
 
@@ -145,6 +146,6 @@ public class Scanner {
 		return (ch >= 'A' && ch <= 'Z') || ch == '!'
 				|| (ch >= '$' && ch <= '&') || (ch >= '+' && ch <= '/' && ch != 44)
 				|| (ch >= ':' && ch <= '?' && ch != ';') || ch == '~'
-				|| ch == '_' || ch == '^';
+				|| ch == '_' || ch == '^' || (ch >= 'a' && ch <= 'z');
 	}
 }

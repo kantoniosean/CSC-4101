@@ -14,7 +14,9 @@
 //         |  string_constant
 //         |  identifier
 //    rest -> )
-//         |  exp+ [. exp] )
+//         |  exp next
+//    next -> rest
+//         |  . exp )
 //
 // and builds a parse tree.  Lists of the form (rest) are further
 // `parsed' into regular lists and special forms in the constructor
@@ -33,9 +35,15 @@
 // parser discards the offending token (which probably was a DOT
 // or an RPAREN) and attempts to continue parsing with the next token.
 
+// (define x '(1 2 3))
+// exp => ( rest
+// => ( exp )
+// => ( define )
+
 package Parse;
 
 import Tokens.Token;
+import Tokens.TokenType;
 import Tree.Node;
 
 public class Parser {
@@ -51,12 +59,19 @@ public class Parser {
     }
 
     private Node parseExp(Token tok) { // has lookahead (tok argument is lookahead)
-
+        TokenType tt = tok.getType();
+        if (tt == TokenType.LPAREN) {
+            // return
+        }
         return null;
     }
 
     protected Node parseRest() {
         // TODO: write code for parsing rest
+        return null;
+    }
+
+    private Node parseNext(Token tok) {
         return null;
     }
 

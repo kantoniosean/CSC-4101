@@ -15,4 +15,8 @@ public class Ident extends Node {
 
         System.out.println(name);
     }
+
+    public boolean isSymbol() {
+        return true;
+    }
 }

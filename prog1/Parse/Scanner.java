@@ -79,7 +79,6 @@ public class Scanner {
 					return getNextToken();
 				}
 			}
-
 			// String constants
 			else if (ch == '"') {
 				// TODO: Scan a string into the buffer variable buf
@@ -91,7 +90,7 @@ public class Scanner {
 					buf[i++] = (byte) ch;
 					ch = in.read();
 				}
-				return new StrToken(buf.toString());
+				return new StrToken(new String(buf));
 			}
 
 			// Integer constants
@@ -128,7 +127,7 @@ public class Scanner {
 					ch = in.read();
 				}
 				in.unread(ch);
-				return new IdentToken(buf.toString());
+				return new IdentToken(new String(buf));
 			}
 
 			// Illegal character

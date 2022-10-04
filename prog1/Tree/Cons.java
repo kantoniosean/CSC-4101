@@ -24,6 +24,10 @@ public class Cons extends Node {
     // object from the Special hierarchy and to leave the rest of
     // parsing up to the interpreter.
     void parseList() {
+        // if (car is not a symbol)
+        // form = new Regular();
+        // else
+        // ...
     }
 
     // TODO: Add any helper functions for parseList
@@ -35,5 +39,25 @@ public class Cons extends Node {
 
     public void print(int n, boolean p) {
         form.print(this, n, p);
+    }
+
+    public Node getCar() {
+        return car;
+    }
+
+    public Node getCdr() {
+        return cdr;
+    }
+
+    public void setCar(Node a) {
+        car = a;
+    }
+
+    public void setCdr(Node d) {
+        cdr = d;
+    }
+
+    public boolean isPair() {
+        return true;
     }
 }

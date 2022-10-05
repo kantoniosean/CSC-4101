@@ -2,6 +2,16 @@
 
 package Tree;
 
+import Tokens.Token;
+import Tokens.TokenType;
+import Tree.Cons;
+import Tree.Nil;
+import Tree.Node;
+import Tree.BooleanLit;
+import Tree.Ident;
+import Tree.IntLit;
+import Tree.StrLit;
+
 public class Node {
     // The argument of print(int) is the number of characters to indent.
     // Every subclass of Node must implement print(int).
@@ -32,27 +42,50 @@ public class Node {
     // the type of a node and that extract some information.
 
     // TODO: implement these in the appropriate subclasses to return true.
-    public boolean isBoolean() {
+    public boolean isBoolean(Token k) {
+        String bool = k.getStrVal();
+        if(bool == "?" || bool == "equ" || bool == "equ?") {
+            return true;
+        }
         return false;
     }
 
-    public boolean isNumber() {
+    public boolean isNumber(Token i) {
+        String num = i.getStrVal();
+        for(int j = 0; j < num.length(); j++) {
+            if(Character.isDigit(num.charAt(j)) == true) {
+                return true;
+            }
+        }
         return false;
     }
 
-    public boolean isString() {
+    public boolean isString(Token t) {
+        String str = t.getStrVal();
+        if(str.length() > 1) {
+            return true;
+        }
+        
         return false;
     }
 
-    public boolean isSymbol() {
+    public boolean isSymbol(Token f) {
+        String symbol = f.getStrVal();
+        if(symbol == "'") {           //neeed to look up other scheme symbols
+            return true;
+        }
         return false;
     }
 
-    public boolean isNull() {
+    public boolean isNull(Token n) {
+        if (n == null) {
+            return true;
+        }
         return false;
     }
 
     public boolean isPair() {
+
         return false;
     }
 

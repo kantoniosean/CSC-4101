@@ -16,7 +16,22 @@ public class Ident extends Node {
         System.out.println(name);
     }
 
-    public boolean isSymbol() {
+    public String getName() {// added this method. not sure if we are allowed to though
+        return name;
+    }
+
+    public boolean isSymbol() { // not sure if this is needed, but I figured we needed a way to decipher a
+                                // regular ident to these special idents
         return true;
+        /*
+         * return name.equalsIgnoreCase("define") ||
+         * name.equalsIgnoreCase("quote") ||
+         * name.equalsIgnoreCase("begin") ||
+         * name.equalsIgnoreCase("cond") ||
+         * name.equalsIgnoreCase("if") ||
+         * name.equalsIgnoreCase("lambda") ||
+         * name.equalsIgnoreCase("let") ||
+         * name.equalsIgnoreCase("set");
+         */
     }
 }

@@ -100,8 +100,10 @@ public class Parser {
             // could also be
             // return new Cons(parseRest(), Nil.getInstance());
         } else if (tt == TokenType.DOT) {
-            return new Cons(parseExp(), Nil.getInstance()); // dot is found, we want to parse next expression and then
-                                                            // close with ) (car and cdr)
+            return new Cons(new Ident("dot"), new Cons(parseExp(), Nil.getInstance())); // dot is found, we want to
+                                                                                        // parse next expression and
+                                                                                        // then
+            // close with ) (car . cdr)
             // . is found, next we parseExp() (the rest of the list) and close the paren
             // (Nil)
             // Cons ---> exp
@@ -125,16 +127,17 @@ public class Parser {
         }
     }
 
-    protected Node parseRest(Token tok) {
+    protected Node parseRest() {
         // TODO: write code for parsing rest
         // needs to know if token is a closing parentheses, else it is an "exp next"
         // parse
         // returns either a closing paren node (NIL) or parseExp() parseNext()
         // if (RPAREN) return Nil.getInstance();
         // else return new Cons(parseExp(), new Cons(parseNext(), Nil.getInstance()))
+        Token tok = scanner.getNextToken();
         TokenType tt = tok.getType();
         if (tt == TokenType.RPAREN) {
-            //end parser?
+            return Nil.getInstance();
         }
         return parseNext(null);
     }

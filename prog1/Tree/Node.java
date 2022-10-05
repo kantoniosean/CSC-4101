@@ -2,18 +2,8 @@
 
 package Tree;
 
-import Tokens.Token;
 import Tree.Node;
-import Tokens.Token;
-import Tokens.TokenType;
-import Tree.Cons;
-import Tree.Nil;
 import Tree.Node;
-import Tree.BooleanLit;
-import Tree.Ident;
-import Tree.IntLit;
-import Tree.StrLit;
-
 
 public class Node {
     // The argument of print(int) is the number of characters to indent.

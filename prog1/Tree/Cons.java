@@ -2,6 +2,15 @@
 
 package Tree;
 
+import Special.Begin;
+import Special.Cond;
+import Special.Define;
+import Special.If;
+import Special.Lambda;
+import Special.Let;
+import Special.Quote;
+import Special.Regular;
+import Special.Set;
 import Special.Special;
 
 public class Cons extends Node {
@@ -23,11 +32,38 @@ public class Cons extends Node {
     // parseList only look at the car for selecting the appropriate
     // object from the Special hierarchy and to leave the rest of
     // parsing up to the interpreter.
-    void parseList() {
+    void parseList() { // temporary algorithm
         // if (car is not a symbol)
         // form = new Regular();
         // else
         // ...
+        if (!car.isSymbol(car)) {
+            form = new Regular();
+        } else {
+            // special case
+            Ident c = (Ident) car;
+            if (c.getName().equalsIgnoreCase("begin")) {
+                form = new Begin();
+            } else if (c.getName().equalsIgnoreCase("cond")) {
+                form = new Cond();
+            } else if (c.getName().equalsIgnoreCase("define")) {
+                form = new Define();
+            } else if (c.getName().equalsIgnoreCase("if")) {
+                form = new If();
+            } else if (c.getName().equalsIgnoreCase("lambda")) {
+                form = new Lambda();
+            } else if (c.getName().equalsIgnoreCase("let")) {
+                form = new Let();
+            } else if (c.getName().equalsIgnoreCase("quote")) {
+                form = new Quote();
+            } else if (c.getName().equalsIgnoreCase("set")) {
+                form = new Set();
+            } else {
+                form = new Regular();
+            }
+        }
+        setCdr(car.getCdr()); // need to look at this
+        setCar(car.getCar()); // ...
     }
 
     // TODO: Add any helper functions for parseList
@@ -51,6 +87,7 @@ public class Cons extends Node {
 
     public void setCar(Node a) {
         car = a;
+        parseList();
     }
 
     public void setCdr(Node d) {

@@ -2,7 +2,7 @@
 
 package Tokens;
 
-public class Token<T> {
+public class Token {
     private TokenType tt;
 
     public Token(TokenType t) {

@@ -62,6 +62,7 @@ public class Cons extends Node {
                 form = new Regular();
             }
         }
+        // if cars car is null don't keep going
         setCdr(car.getCdr()); // need to look at this
         setCar(car.getCar()); // ...
     }

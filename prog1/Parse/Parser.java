@@ -58,9 +58,6 @@
 // => ( IDENT IDENT ' ( 1 2 3 ) next
 // => ( IDENT IDENT ' ( 1 2 3 ) rest
 // => ( IDENT IDENT ' ( 1 2 3 ) )
-// NOT SURE IF ABOVE IS CORRECT
-
-// new Cons(new Ident("quote"), new Cons(parseExp(), new Nil().getInstance()))
 
 package Parse;
 
@@ -82,7 +79,6 @@ public class Parser {
     }
 
     public Node parseExp() { // does not have lookahead
-        // TODO: write code for parsing an exp
         return parseExp(scanner.getNextToken());
     }
 
@@ -127,24 +123,42 @@ public class Parser {
         }
     }
 
-    protected Node parseRest() {
-        // TODO: write code for parsing rest
+    protected Node parseRest() { // only call this when parseExp() calls rest. next needs lookahead so get token
+                                 // and if rest needs to be called, pass in that token given to next in
+                                 // parseRest(tok). prevents using scanner.getNextToken() too much that you skip
+                                 // a token
+        return parseRest(scanner.getNextToken());
+    }
+
+    private Node parseRest(Token tok) {
         // needs to know if token is a closing parentheses, else it is an "exp next"
         // parse
         // returns either a closing paren node (NIL) or parseExp() parseNext()
         // if (RPAREN) return Nil.getInstance();
         // else return new Cons(parseExp(), new Cons(parseNext(), Nil.getInstance()))
-        Token tok = scanner.getNextToken();
         TokenType tt = tok.getType();
         if (tt == TokenType.RPAREN) {
             return Nil.getInstance();
+        } else {
+            return new Cons(parseExp(), parseNext());
         }
-        return parseNext(null);
     }
 
-    private Node parseNext(Token tok) {
-        return null;
+    private Node parseNext() {
+        // if tok is a dot,
+        // return new Cons(new Ident("dot"), new Cons(parseExp(), Nil.getInstance()));
+        // else
+        // parseRest()
+        // right now we have a problem where parseNext(tok) is being called with
+        // scanners next token as an arg but,
+        // if the token is not a dot, we have to parseRest() and that method will call
+        // scanners next token again and a token will be skipped
+        Token tok = scanner.getNextToken();
+        TokenType tt = tok.getType();
+        if (tt == TokenType.DOT) {
+            return new Cons(new Ident("dot"), new Cons(parseExp(), Nil.getInstance()));
+        } else {
+            return parseRest(tok); // allows us to use parseRest with lookahead without skipping a token
+        }
     }
-
-    // TODO: Add any additional methods you might need.
 }

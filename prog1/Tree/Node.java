@@ -3,6 +3,8 @@
 package Tree;
 
 import Tokens.Token;
+import Tree.Node;
+import Tokens.Token;
 import Tokens.TokenType;
 import Tree.Cons;
 import Tree.Nil;
@@ -11,6 +13,7 @@ import Tree.BooleanLit;
 import Tree.Ident;
 import Tree.IntLit;
 import Tree.StrLit;
+
 
 public class Node {
     // The argument of print(int) is the number of characters to indent.
@@ -42,7 +45,11 @@ public class Node {
     // the type of a node and that extract some information.
 
     // TODO: implement these in the appropriate subclasses to return true.
-    public boolean isBoolean(Token k) {
+    public String getStrVal() {
+        return "";
+    }
+
+    public boolean isBoolean(Node k) {
         String bool = k.getStrVal();
         if(bool == "?" || bool == "equ" || bool == "equ?") {
             return true;
@@ -50,7 +57,7 @@ public class Node {
         return false;
     }
 
-    public boolean isNumber(Token i) {
+    public boolean isNumber(Node i) {
         String num = i.getStrVal();
         for(int j = 0; j < num.length(); j++) {
             if(Character.isDigit(num.charAt(j)) == true) {
@@ -60,7 +67,7 @@ public class Node {
         return false;
     }
 
-    public boolean isString(Token t) {
+    public boolean isString(Node t) {
         String str = t.getStrVal();
         if(str.length() > 1) {
             return true;
@@ -69,15 +76,17 @@ public class Node {
         return false;
     }
 
-    public boolean isSymbol(Token f) {
+    public boolean isSymbol(Node f) {
         String symbol = f.getStrVal();
-        if(symbol == "'") {           //neeed to look up other scheme symbols
+        if(symbol ==  "+" || symbol == "-" || symbol == "*" || symbol == "/" || symbol == "." || symbol == "<" || symbol == "=" 
+            || symbol == ">" || symbol == "!" || symbol == "?" || symbol == ":" || symbol == "$" 
+            || symbol == "%" || symbol == "_" || symbol == "&" || symbol == "~" || symbol == "^") {          
             return true;
         }
         return false;
     }
 
-    public boolean isNull(Token n) {
+    public boolean isNull(Node n) {
         if (n == null) {
             return true;
         }
@@ -102,6 +111,7 @@ public class Node {
     }
 
     public void setCar(Node a) {
+
     }
 
     public void setCdr(Node d) {

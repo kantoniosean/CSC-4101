@@ -6,7 +6,7 @@ public class IdentToken extends Token {
     private String name;
 
     public IdentToken(String s) {
-        super(TokenType.IDENT);
+        super(TokenType.IDENT, s);
         name = s;
     }
 

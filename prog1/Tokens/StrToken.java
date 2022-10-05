@@ -6,7 +6,7 @@ public class StrToken extends Token {
     private String strVal;
 
     public StrToken(String s) {
-        super(TokenType.STRING);
+        super(TokenType.STRING, s);
         strVal = s;
     }
 

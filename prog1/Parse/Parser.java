@@ -125,13 +125,17 @@ public class Parser {
         }
     }
 
-    protected Node parseRest() {
+    protected Node parseRest(Token tok) {
         // TODO: write code for parsing rest
         // needs to know if token is a closing parentheses, else it is an "exp next"
         // parse
         // returns either a closing paren node (NIL) or parseExp() parseNext()
         // if (RPAREN) return Nil.getInstance();
         // else return new Cons(parseExp(), new Cons(parseNext(), Nil.getInstance()))
+        TokenType tt = tok.getType();
+        if (tt == TokenType.RPAREN) {
+            //end parser?
+        }
         return parseNext(null);
     }
 

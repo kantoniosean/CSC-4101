@@ -45,56 +45,28 @@ public class Node {
     // the type of a node and that extract some information.
 
     // TODO: implement these in the appropriate subclasses to return true.
-    public String getStrVal() {
-        return "";
-    }
 
     public boolean isBoolean(Node k) {
-        String bool = k.getStrVal();
-        if(bool == "?" || bool == "equ" || bool == "equ?") {
-            return true;
-        }
         return false;
     }
 
-    public boolean isNumber(Node i) {
-        String num = i.getStrVal();
-        for(int j = 0; j < num.length(); j++) {
-            if(Character.isDigit(num.charAt(j)) == true) {
-                return true;
-            }
-        }
+    public boolean isNumber() {
         return false;
     }
 
-    public boolean isString(Node t) {
-        String str = t.getStrVal();
-        if(str.length() > 1) {
-            return true;
-        }
-        
+    public boolean isString() {
         return false;
     }
 
     public boolean isSymbol(Node f) {
-        String symbol = f.getStrVal();
-        if(symbol ==  "+" || symbol == "-" || symbol == "*" || symbol == "/" || symbol == "." || symbol == "<" || symbol == "=" 
-            || symbol == ">" || symbol == "!" || symbol == "?" || symbol == ":" || symbol == "$" 
-            || symbol == "%" || symbol == "_" || symbol == "&" || symbol == "~" || symbol == "^") {          
-            return true;
-        }
         return false;
     }
 
     public boolean isNull(Node n) {
-        if (n == null) {
-            return true;
-        }
         return false;
     }
 
     public boolean isPair() {
-
         return false;
     }
 

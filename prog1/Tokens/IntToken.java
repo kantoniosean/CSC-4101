@@ -6,7 +6,7 @@ public class IntToken extends Token {
     private int intVal;
 
     public IntToken(int i) {
-        super(TokenType.INT, i);
+        super(TokenType.INT);
         intVal = i;
     }
 

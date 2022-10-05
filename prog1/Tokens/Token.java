@@ -2,26 +2,35 @@
 
 package Tokens;
 
-public class Token {
+public class Token<T> {
     private TokenType tt;
+    private T data;
 
-    public Token(TokenType t) {
+    public Token(TokenType t, T data) {
         tt = t;
+        this.data = data;
     }
 
+    public String toString() {
+        return "" + this.data;
+    }
     public final TokenType getType() {
         return tt;
     }
 
     public int getIntVal() {
-        return 0;
+        String num = data.toString();
+        return Integer.parseInt(num);
+
     }
 
     public String getStrVal() {
-        return "";
+        String str = data.toString();
+        return str;
     }
 
     public String getName() {
-        return "";
+        String name = data.toString();
+        return name;
     }
 }

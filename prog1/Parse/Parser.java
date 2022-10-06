@@ -78,14 +78,17 @@ public class Parser {
         scanner = s;
     }
 
+    // example: (define x 3)
+    // ( token is found
     public Node parseExp() { // does not have lookahead
-        return parseExp(scanner.getNextToken());
+        return parseExp(scanner.getNextToken()); // i = 0: "("
     }
 
     private Node parseExp(Token tok) { // has lookahead (tok argument is lookahead)
         TokenType tt = tok.getType();
-        if (tt == TokenType.LPAREN) {
-            return new Cons(BooleanLit.getInstance(false), new Cons(parseRest(), Nil.getInstance()));
+        if (tt == TokenType.LPAREN) { // Cons --> (car) parseRest()
+                                      // --> ()
+            return new Cons(parseRest(), Nil.getInstance());
             // start of a regular "list", I made the root node look like,
             // (Cons)
             // / \
@@ -127,10 +130,10 @@ public class Parser {
                                  // and if rest needs to be called, pass in that token given to next in
                                  // parseRest(tok). prevents using scanner.getNextToken() too much that you skip
                                  // a token
-        return parseRest(scanner.getNextToken());
+        return parseRest(scanner.getNextToken()); // i = 0: ( rest here, next token is "define"
     }
 
-    private Node parseRest(Token tok) {
+    private Node parseRest(Token tok) { // parseRest(define)
         // needs to know if token is a closing parentheses, else it is an "exp next"
         // parse
         // returns either a closing paren node (NIL) or parseExp() parseNext()
@@ -139,8 +142,9 @@ public class Parser {
         TokenType tt = tok.getType();
         if (tt == TokenType.RPAREN) {
             return Nil.getInstance();
-        } else {
-            return new Cons(parseExp(), parseNext());
+        } else { // Cons --> (car) parseExp()
+                 // dd
+            return new Cons(parseExp(tok), parseNext());
         }
     }
 

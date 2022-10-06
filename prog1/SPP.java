@@ -13,14 +13,14 @@ public class SPP {
 		Scanner scanner = new Scanner(System.in);
 
 		if (argv.length > 1 ||
-		    (argv.length == 1 && ! argv[0].equals("-d"))) {
+				(argv.length == 1 && !argv[0].equals("-d"))) {
 			System.err.println("Usage: java SPP [-d]");
 			System.exit(1);
 		}
 
 		// If command line option -d is provided, debug the scanner
 		if (argv.length == 1 && argv[0].equals("-d")) {
-			
+
 			Token tok = scanner.getNextToken();
 			while (tok != null) {
 				TokenType tt = tok.getType();
@@ -48,6 +48,7 @@ public class SPP {
 
 		root = parser.parseExp();
 		while (root != null) {
+			System.out.println(root.getClass());
 			root.print(0);
 			root = parser.parseExp();
 		}

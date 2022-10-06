@@ -32,7 +32,7 @@ public class Cons extends Node {
     // parseList only look at the car for selecting the appropriate
     // object from the Special hierarchy and to leave the rest of
     // parsing up to the interpreter.
-    void parseList() { // temporary algorithm
+    void parseList() {
         // if (car is not a symbol)
         // form = new Regular();
         // else
@@ -62,13 +62,7 @@ public class Cons extends Node {
                 form = new Regular();
             }
         }
-        // if cars car is null don't keep going
-        setCdr(car.getCdr()); // need to look at this
-        setCar(car.getCar()); // ...
     }
-
-    // TODO: Add any helper functions for parseList
-    // to the class hierarchy as needed.
 
     public void print(int n) {
         form.print(this, n, false);
@@ -88,7 +82,6 @@ public class Cons extends Node {
 
     public void setCar(Node a) {
         car = a;
-        parseList();
     }
 
     public void setCdr(Node d) {

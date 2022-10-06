@@ -34,7 +34,6 @@ public class Scanner {
 			// input stream is easier.
 			ch = in.read();
 
-			// TODO: Skip white space and comments
 			if (ch == ' ' || ch == '\t' || ch == '\r' || ch == '\f' || ch == '\n') {
 				// ignore
 				return getNextToken();
@@ -81,7 +80,6 @@ public class Scanner {
 			}
 			// String constants
 			else if (ch == '"') {
-				// TODO: Scan a string into the buffer variable buf
 				int i = 0;
 				ch = in.read();
 				while (ch != '"') {
@@ -96,7 +94,6 @@ public class Scanner {
 			// Integer constants
 			else if (ch >= '0' && ch <= '9') {
 				int i = ch - '0';
-				// TODO: scan the number and convert it to an integer
 				ch = in.read();
 				while (ch >= '0' && ch <= '9') {
 					if (ch == -1)
@@ -116,7 +113,6 @@ public class Scanner {
 			 * or ch is some other valid first character for an identifier
 			 * + - * / . < = > ! ? : $ % _ & ~ ^
 			 */) {
-				// TODO: scan an identifier into the buffer variable buf
 				// Put the character after the identifier back into the input
 				// in.unread(ch);
 				int i = 0;

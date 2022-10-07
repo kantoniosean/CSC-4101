@@ -9,7 +9,7 @@ import Tree.Nil;
 import Tree.Node;
 import Tree.StrLit;
 
-// public class Regular extends Special {
+public class Regular extends Special {
 
     public void print(Node t, int n, boolean p) {
         if (t.isBoolean(t)) {

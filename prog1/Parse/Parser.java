@@ -99,9 +99,9 @@ public class Parser {
             // could also be
             // return new Cons(parseRest(), Nil.getInstance());
         } else if (tt == TokenType.DOT) {
-            return new Cons(new Ident("dot"), new Cons(parseExp(), Nil.getInstance())); // dot is found, we want to
-                                                                                        // parse next expression and
-                                                                                        // then
+            return new Cons(new Ident("."), new Cons(parseExp(), Nil.getInstance())); // dot is found, we want to
+                                                                                      // parse next expression and
+                                                                                      // then
             // close with ) (car . cdr)
             // . is found, next we parseExp() (the rest of the list) and close the paren
             // (Nil)
@@ -116,7 +116,7 @@ public class Parser {
         } else if (tt == TokenType.INT) {
             return new IntLit(tok.getIntVal());
         } else if (tt == TokenType.QUOTE) {
-            return new Cons(new Ident("quote"), new Cons(parseExp(), Nil.getInstance()));
+            return new Cons(new Ident("quote"), parseExp());
         } else if (tt == TokenType.RPAREN) {
             return Nil.getInstance();
         } else if (tt == TokenType.STRING) {
@@ -160,7 +160,7 @@ public class Parser {
         Token tok = scanner.getNextToken();
         TokenType tt = tok.getType();
         if (tt == TokenType.DOT) {
-            return new Cons(new Ident("dot"), new Cons(parseExp(), Nil.getInstance()));
+            return new Cons(new Ident("."), new Cons(parseExp(), Nil.getInstance()));
         } else {
             return parseRest(tok); // allows us to use parseRest with lookahead without skipping a token
         }

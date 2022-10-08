@@ -7,12 +7,11 @@ import Tree.Node;
 public class Define extends Special {
 
     public void print(Node t, int n, boolean p) {
-        System.out.print("(define ");
-
-        if (t.getCar() != null) {
-            t.getCar().print(2, true);
-        } else {
-            System.out.print(")");
+        System.out.print("define");
+        if (t.isPair()) {
+            Node a = t.getCdr();
+            a.print(1, true);
+            System.out.println();
         }
     }
 }

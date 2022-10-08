@@ -7,15 +7,11 @@ import Tree.Node;
 public class If extends Special {
 
     public void print(Node t, int n, boolean p) {
-        System.out.print("(if ");
-        if (t.getCdr().getCdr().getCar() != null) {
-            t.getCdr().getCdr().getCar().print(0, true);
-        } else {
-            System.out.print(")");
-        }
-
-        if (t.getCdr().getCar().isSymbol(t)) {
-            t.getCdr().getCar().print(0, false);
+        System.out.print("if\n  "); // needs to have first two list elements then indent. same with lambda
+        if (t.isPair()) {
+            Node a = t.getCdr();
+            a.print(2, true);
+            System.out.println();
         }
     }
 }

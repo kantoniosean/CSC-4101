@@ -14,6 +14,7 @@ public class Ident extends Node {
             System.out.print(" ");
 
         System.out.print(name);
+
     }
 
     public String getName() { // added this method. not sure if we are allowed to though

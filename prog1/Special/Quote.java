@@ -7,11 +7,9 @@ import Tree.Node;
 public class Quote extends Special {
 
     public void print(Node t, int n, boolean p) {
-        System.out.println("'");
-        if (t.getCdr() != null) {
-            System.out.print("");
-        } else {
-            t.getCdr().print(0, false);
-        }
+        System.out.print(" '");
+        Node a = t.getCdr();
+        if (a != null)
+            a.print(0, true);
     }
 }

@@ -21,7 +21,7 @@ public class Nil extends Node {
             System.out.print(" ");
 
         if (p) {
-            System.out.print(") ");
+            System.out.print(")");
         }
     }
 

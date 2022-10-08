@@ -37,26 +37,29 @@ public class Cons extends Node {
         // form = new Regular();
         // else
         // ...
-        if (!car.isSymbol(car)) {
+        if (!(car instanceof Ident)) { // possibly have a problem where the first cons
+                                       // is created and a regular form is issued but, if the next token
+                                       // is an ident and it's a special case, I want to issue that form first.
+                                       // fix if I have time
             form = new Regular();
         } else {
             // special case
             Ident c = (Ident) car;
-            if (c.getName().equalsIgnoreCase("begin")) {
+            if (c.getName().trim().equalsIgnoreCase("begin")) {
                 form = new Begin();
-            } else if (c.getName().equalsIgnoreCase("cond")) {
+            } else if (c.getName().trim().equalsIgnoreCase("cond")) {
                 form = new Cond();
-            } else if (c.getName().equalsIgnoreCase("define")) {
+            } else if (c.getName().trim().equalsIgnoreCase("define")) {
                 form = new Define();
-            } else if (c.getName().equalsIgnoreCase("if")) {
+            } else if (c.getName().trim().equalsIgnoreCase("if")) {
                 form = new If();
-            } else if (c.getName().equalsIgnoreCase("lambda")) {
+            } else if (c.getName().trim().equalsIgnoreCase("lambda")) {
                 form = new Lambda();
-            } else if (c.getName().equalsIgnoreCase("let")) {
+            } else if (c.getName().trim().equalsIgnoreCase("let")) {
                 form = new Let();
-            } else if (c.getName().equalsIgnoreCase("quote") || c.getName().equalsIgnoreCase("'")) {
+            } else if (c.getName().trim().equalsIgnoreCase("quote")) {
                 form = new Quote();
-            } else if (c.getName().equalsIgnoreCase("set")) {
+            } else if (c.getName().equalsIgnoreCase("set!")) {
                 form = new Set();
             } else {
                 form = new Regular();

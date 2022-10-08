@@ -13,7 +13,7 @@ public class Ident extends Node {
         for (int i = 0; i < n; i++)
             System.out.print(" ");
 
-        System.out.println(name);
+        System.out.print(name);
     }
 
     public String getName() { // added this method. not sure if we are allowed to though

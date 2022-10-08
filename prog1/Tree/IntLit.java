@@ -13,7 +13,7 @@ public class IntLit extends Node {
         for (int i = 0; i < n; i++)
             System.out.print(" ");
 
-        System.out.println(intVal);
+        System.out.print(intVal);
     }
 
     public boolean isNumber() {

@@ -17,7 +17,6 @@ public class SPP {
 			System.err.println("Usage: java SPP [-d]");
 			System.exit(1);
 		}
-
 		// If command line option -d is provided, debug the scanner
 		if (argv.length == 1 && argv[0].equals("-d")) {
 
@@ -48,10 +47,10 @@ public class SPP {
 
 		root = parser.parseExp();
 		while (root != null) {
-			System.out.println(root.getClass());
 			root.print(0);
 			root = parser.parseExp();
 		}
+		System.out.println();
 		System.exit(0);
 	}
 }

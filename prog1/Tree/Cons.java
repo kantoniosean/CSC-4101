@@ -54,7 +54,7 @@ public class Cons extends Node {
                 form = new Lambda();
             } else if (c.getName().equalsIgnoreCase("let")) {
                 form = new Let();
-            } else if (c.getName().equalsIgnoreCase("quote")) {
+            } else if (c.getName().equalsIgnoreCase("quote") || c.getName().equalsIgnoreCase("'")) {
                 form = new Quote();
             } else if (c.getName().equalsIgnoreCase("set")) {
                 form = new Set();
@@ -64,6 +64,7 @@ public class Cons extends Node {
         }
     }
 
+    @Override
     public void print(int n) {
         form.print(this, n, false);
     }

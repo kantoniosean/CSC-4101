@@ -21,6 +21,7 @@ public class Ident extends Node {
         return name;
     }
 
+    @Override
     public boolean isSymbol() { // not sure if this is needed, but I figured we needed a way to decipher a
                                 // regular ident to these special idents
         return true;

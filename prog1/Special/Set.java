@@ -10,7 +10,7 @@ public class Set extends Special {
         System.out.print("set!");
         if (t.isPair()) {
             Node a = t.getCdr();
-            a.print(1, true);
+            a.print(2, true);
             System.out.println();
         }
     }

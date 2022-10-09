@@ -8,18 +8,23 @@ import Tree.Node;
 public class Regular extends Special {
 
     public void print(Node t, int n, boolean p) {
+
         if (t.isBoolean(t)) {
             t.print(n);
         } else if (t.isNumber()) {
             t.print(n);
         } else if (t.isString()) {
-            t.print(n);
-        } else if (t.isSymbol(t)) {
+            t.print(n + 2);
+        } else if (t.isSymbol()) {
             t.print(n);
         } else if (t.isPair()) {
             if (!p) {
-                System.out.print(" (");
+                for (int i = 0; i < n; i++) {
+                    System.out.print("  ");
+                }
+                System.out.print("(");
                 t.getCar().print(0, true);
+                n = n + 2;
             } else {
                 t.getCar().print(n);
             }

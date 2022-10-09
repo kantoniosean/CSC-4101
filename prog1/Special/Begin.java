@@ -7,10 +7,11 @@ import Tree.Node;
 public class Begin extends Special {
 
     public void print(Node t, int n, boolean p) {
-        System.out.print("begin\n  ");
+
+        System.out.print("begin\n");
         if (t.isPair()) {
             Node a = t.getCdr();
-            a.print(2, true);
+            a.print(n + 1, true);
             System.out.println();
         }
     }

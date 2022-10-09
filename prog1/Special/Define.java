@@ -11,7 +11,6 @@ public class Define extends Special {
         if (t.isPair()) {
             Node a = t.getCdr();
             a.print(1, true);
-            System.out.println();
         }
     }
 }

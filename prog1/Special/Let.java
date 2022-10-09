@@ -7,11 +7,10 @@ import Tree.Node;
 public class Let extends Special {
 
     public void print(Node t, int n, boolean p) {
-        System.out.print("let\n  ");
+        System.out.print("let\n");
         if (t.isPair()) {
             Node a = t.getCdr();
-            a.print(2, true); // regular print ignores n, so fix if I have time (indentation error)
-            System.out.println();
+            a.print(0, true); // regular print ignores n, so fix if I have time (indentation error)
         }
     }
 }

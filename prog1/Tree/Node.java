@@ -46,7 +46,7 @@ public class Node {
         return false;
     }
 
-    public boolean isSymbol(Node f) {
+    public boolean isSymbol() {
         return false;
     }
 
@@ -76,4 +76,9 @@ public class Node {
 
     public void setCdr(Node d) {
     }
+
+    public String getName() {
+        return null;
+    }
+
 }

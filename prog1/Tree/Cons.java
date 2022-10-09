@@ -37,10 +37,7 @@ public class Cons extends Node {
         // form = new Regular();
         // else
         // ...
-        if (!(car instanceof Ident)) { // possibly have a problem where the first cons
-                                       // is created and a regular form is issued but, if the next token
-                                       // is an ident and it's a special case, I want to issue that form first.
-                                       // fix if I have time
+        if (!(car instanceof Ident)) {
             form = new Regular();
         } else {
             // special case
@@ -49,6 +46,8 @@ public class Cons extends Node {
                 form = new Begin();
             } else if (c.getName().trim().equalsIgnoreCase("cond")) {
                 form = new Cond();
+            } else if (c.getName() == "\'") {
+                form = new Quote();
             } else if (c.getName().trim().equalsIgnoreCase("define")) {
                 form = new Define();
             } else if (c.getName().trim().equalsIgnoreCase("if")) {
@@ -72,14 +71,17 @@ public class Cons extends Node {
         form.print(this, n, false);
     }
 
+    @Override
     public void print(int n, boolean p) {
         form.print(this, n, p);
     }
 
+    @Override
     public Node getCar() {
         return car;
     }
 
+    @Override
     public Node getCdr() {
         return cdr;
     }
@@ -92,6 +94,7 @@ public class Cons extends Node {
         cdr = d;
     }
 
+    @Override
     public boolean isPair() {
         return true;
     }

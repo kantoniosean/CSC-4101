@@ -35,30 +35,6 @@
 // parser discards the offending token (which probably was a DOT
 // or an RPAREN) and attempts to continue parsing with the next token.
 
-// (define x '(1 2 3))
-// exp => ( rest
-// => ( exp next
-// => ( IDENT next
-// => ( IDENT rest
-// => ( IDENT exp next
-// => ( IDENT IDENT next
-// => ( IDENT IDENT rest
-// => ( IDENT IDENT exp next
-// => ( IDENT IDENT ' exp next
-// => ( IDENT IDENT ' ( rest next
-// => ( IDENT IDENT ' ( exp next next
-// => ( IDENT IDENT ' ( 1 next next
-// => ( IDENT IDENT ' ( 1 rest next
-// => ( IDENT IDENT ' ( 1 exp next next
-// => ( IDENT IDENT ' ( 1 2 next next
-// => ( IDENT IDENT ' ( 1 2 rest next
-// => ( IDENT IDENT ' ( 1 2 exp next next
-// => ( IDENT IDENT ' ( 1 2 3 next next
-// => ( IDENT IDENT ' ( 1 2 3 rest next
-// => ( IDENT IDENT ' ( 1 2 3 ) next
-// => ( IDENT IDENT ' ( 1 2 3 ) rest
-// => ( IDENT IDENT ' ( 1 2 3 ) )
-
 package Parse;
 
 import Tokens.Token;

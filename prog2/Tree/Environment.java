@@ -100,11 +100,36 @@ public class Environment extends Node {
 
 	public void define(Node id, Node val) {
 		// TODO: implement this function
+
+		// this may not be right i havent tested it
+		Node content = find(id, scope);
+		Node innCar = new Cons(val, Nil.getInstance());
+		Node inCar = new Cons(id, innCar);
+
+		if (content == null) {
+			scope = new Cons(inCar, scope);
+		} else {
+			scope.setCar(val);
+		}
+
 	}
 
 	public void assign(Node id, Node val) {
 		// TODO: implement this function
+		Node content = find(id, scope);
+		Node newCons = new Cons(id, val);
 
+		if (content == null && env != null) {
+			// new assignment ?
+		}
+
+		else if (content == null && env == null) {
+			// error
+		}
+
+		else {
+			// new cons
+		}
 		// You can use find() to get a list containing the value and
 		// then update the value using setCar()
 	}

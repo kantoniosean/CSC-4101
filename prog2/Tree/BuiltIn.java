@@ -20,11 +20,11 @@ public class BuiltIn extends Node {
     // keep a copy of the Environment here and synchronize it with
     // class Scheme4101.
 
-    // private static Environment globalEnv = null;
-    //
-    // public static void setGlobalEnv(Environment env) {
-    // globalEnv = env;
-    // }
+    private static Environment globalEnv = null;
+
+    public static void setGlobalEnv(Environment env) {
+        globalEnv = env;
+    }
 
     private Node symbol;
 
@@ -61,27 +61,27 @@ public class BuiltIn extends Node {
 
     // The easiest way to implement BuiltIn.apply is as an
     // if-then-else chain testing for the different names of
-    // the built-in functions.  E.g., here's how load could
+    // the built-in functions. E.g., here's how load could
     // be implemented:
 
     // if (name.equals("load")) {
-    //     if (!arg1.isString()) {
-    //         System.err.println("Error: wrong type of argument");
-    //         return Nil.getInstance();
-    //     }
-    //     String filename = arg1.getStrVal();
-    //     try {
-    //         Scanner scanner = new Scanner(new FileInputStream(filename));
-    //         Parser parser = new Parser(scanner);
+    // if (!arg1.isString()) {
+    // System.err.println("Error: wrong type of argument");
+    // return Nil.getInstance();
+    // }
+    // String filename = arg1.getStrVal();
+    // try {
+    // Scanner scanner = new Scanner(new FileInputStream(filename));
+    // Parser parser = new Parser(scanner);
     //
-    //         Node root = parser.parseExp();
-    //         while (root != null) {
-    //             root.eval(globalEnv);
-    //             root = parser.parseExp();
-    //         }
-    //     } catch (IOException e) {
-    //         System.err.println("Could not find file " + filename);
-    //     }
-    //     return Nil.getInstance();  // or Unspecific.getInstance();
+    // Node root = parser.parseExp();
+    // while (root != null) {
+    // root.eval(globalEnv);
+    // root = parser.parseExp();
+    // }
+    // } catch (IOException e) {
+    // System.err.println("Could not find file " + filename);
+    // }
+    // return Nil.getInstance(); // or Unspecific.getInstance();
     // }
 }

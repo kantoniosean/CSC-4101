@@ -4,16 +4,18 @@ import Parse.Scanner;
 import Parse.Parser;
 import Tokens.Token;
 import Tokens.TokenType;
+import Tree.BuiltIn;
+import Tree.Environment;
 import Tree.Node;
 
 public class Scheme4101 {
 
-	// private static Environment env = null;
+	private static Environment env = null;
 
-	// private static final String prompt = "Scheme4101> ";
-	// private static final String prompt = "> ";
+	private static final String prompt = "Scheme4101> ";
+	private static final String prompt1 = "> ";
 
-	// private static final String ini_file = "ini.scm";
+	private static final String ini_file = "ini.scm";
 
 	public static void main(String argv[]) {
 
@@ -55,13 +57,31 @@ public class Scheme4101 {
 		// TODO: Create and populate the built-in environment and
 		// create the top-level environment
 
-		// env = new Environment();
-		// BuiltIn.setGlobalEnv(env);
+		env = new Environment();
+		BuiltIn.setGlobalEnv(env);
 		//
 		// populate the environment with BuiltIns and the code from ini.scm
-		//
-		// env = new Environment(env);
-		// BuiltIn.setGlobalEnv(env);
+
+		/*
+		 * BuiltIn's to add before scanning ini.scm
+		 * symbol?
+		 * number?
+		 * b+, b-, etc.
+		 * car, cdr, set-car!, set-cdr!, null?, cons, pair?, eq?
+		 * procedure?
+		 * read/write/display/newline
+		 * eval, apply, interaction-environment
+		 * load
+		 */
+
+		// apply() takes "Node args" as an argument (which would be a Cons node)
+		// and the car or first argument should be a closure that contains the enclosing
+		// environment and
+		// a lambda expression if needed.
+		// BuiltIn.apply(Closure, ...)
+
+		env = new Environment(env);
+		BuiltIn.setGlobalEnv(env);
 
 		// Read-eval-print loop
 

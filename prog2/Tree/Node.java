@@ -116,4 +116,9 @@ public class Node {
         System.err.println("Error: Node.eval not yet implemented");
         return Nil.getInstance();
     }
+
+    public Node apply(Node args) {
+        // report error, otherwise defer to BuiltIn
+        return null;
+    }
 }

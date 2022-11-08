@@ -106,9 +106,13 @@ public class Environment extends Node {
 		Node innCar = new Cons(val, Nil.getInstance());
 		Node inCar = new Cons(id, innCar);
 
+		// I'd assume above is doing (id val) but I'm confused why we change the scope
+		// below.
 		if (content == null) {
+			// id was not in scope, so we want to make a new (id, val) pair in the frame
 			scope = new Cons(inCar, scope);
 		} else {
+			// id was found in scope, so we want to change its value to val
 			scope.setCar(val);
 		}
 

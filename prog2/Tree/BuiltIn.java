@@ -56,6 +56,18 @@ public class BuiltIn extends Node {
     // to report an error. It should be overwritten only in classes
     // BuiltIn and Closure.
     public Node apply(Node args) {
+        if (args == null) {
+            return null;
+        }
+
+        String name = symbol.getName();
+
+        // if (name.equals("b+")) {
+        // if (car.isNumber() && cdr.isNumber()) {
+
+        // }
+        // }
+
         return null;
     }
 

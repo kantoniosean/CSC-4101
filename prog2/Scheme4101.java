@@ -6,6 +6,7 @@ import Tokens.Token;
 import Tokens.TokenType;
 import Tree.BuiltIn;
 import Tree.Environment;
+import Tree.Ident;
 import Tree.Node;
 
 public class Scheme4101 {
@@ -61,6 +62,9 @@ public class Scheme4101 {
 		BuiltIn.setGlobalEnv(env);
 		//
 		// populate the environment with BuiltIns and the code from ini.scm
+
+		Node id = new Ident("symbol?");
+		env.define(id, new BuiltIn(id));
 
 		/*
 		 * BuiltIn's to add before scanning ini.scm

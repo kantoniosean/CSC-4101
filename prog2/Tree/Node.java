@@ -118,7 +118,7 @@ public class Node {
     }
 
     public Node apply(Node args) {
-        // report error, otherwise defer to BuiltIn
-        return null;
+        System.err.println("Error: Node.apply not yet implemented");
+        return Nil.getInstance();
     }
 }

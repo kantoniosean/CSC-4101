@@ -99,7 +99,6 @@ public class Environment extends Node {
 	}
 
 	public void define(Node id, Node val) {
-		// TODO: implement this function
 
 		// this may not be right i havent tested it
 		Node content = find(id, scope);
@@ -113,28 +112,23 @@ public class Environment extends Node {
 			scope = new Cons(inCar, scope);
 		} else {
 			// id was found in scope, so we want to change its value to val
-			scope.setCar(val);
+			content.getCdr().setCar(val);
 		}
 
 	}
 
 	public void assign(Node id, Node val) {
-		// TODO: implement this function
 		Node content = find(id, scope);
-		Node newCons = new Cons(id, val);
 
-		if (content == null && env != null) {
-			// new assignment ?
+		Environment curr = env;
+		while (content == null) {
+			if (env == null) {
+				System.err.println("Error: variable not found");
+			} else {
+				curr = curr.env;
+				content = find(id, scope);
+			}
 		}
-
-		else if (content == null && env == null) {
-			// error
-		}
-
-		else {
-			// new cons
-		}
-		// You can use find() to get a list containing the value and
-		// then update the value using setCar()
+		content.getCdr().setCar(val);
 	}
 }

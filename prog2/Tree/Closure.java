@@ -48,7 +48,15 @@ public class Closure extends Node {
     // TODO: The method apply() should be defined in class Node
     // to report an error. It should be overwritten only in classes
     // BuiltIn and Closure.
+    // Takes a function and a list of its arguments
+    // Node args = Cons(Closure, Cons(args)) or
+    // = Cons(args) ???
+    // Should we use our fun and env field as the Closure for apply?
+    // Or is it a different function we are applying
+    // Used for user-defined function to apply a functions args to itself
     public Node apply(Node args) {
+        Closure c = new Closure(fun, env); // Is this right?
+
         return null;
     }
 }

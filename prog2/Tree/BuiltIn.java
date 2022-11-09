@@ -52,7 +52,7 @@ public class BuiltIn extends Node {
             System.out.println();
     }
 
-    // TODO: The method apply() should be defined in class Node
+    // The method apply() should be defined in class Node
     // to report an error. It should be overwritten only in classes
     // BuiltIn and Closure.
     public Node apply(Node args) {

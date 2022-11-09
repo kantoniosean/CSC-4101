@@ -45,18 +45,23 @@ public class Closure extends Node {
         System.out.println(" }");
     }
 
-    // TODO: The method apply() should be defined in class Node
+    // The method apply() should be defined in class Node
     // to report an error. It should be overwritten only in classes
     // BuiltIn and Closure.
-    // Takes a function and a list of its arguments
-    // Node args = Cons(Closure, Cons(args)) or
-    // = Cons(args) ???
-    // Should we use our fun and env field as the Closure for apply?
-    // Or is it a different function we are applying
-    // Used for user-defined function to apply a functions args to itself
     public Node apply(Node args) {
-        Closure c = new Closure(fun, env); // Is this right?
-
-        return null;
+        Closure c = (Closure) args.getCar();
+        // should I use a try catch clause here in case the first arg was not a closure?
+        Environment env = new Environment(c.getEnv()); // creates new frame with enclosing env c.getEnv()
+        // Now we want to fill up the scope with the functions params
+        Node params = args.getCdr();
+        while (!params.isNull()) {
+            // car should be a param variable and we want to look for it in the surrounding
+            // environments
+            Node id = params.getCar();
+            Node val = env.lookup(id);
+            env.define(id, val);
+            params = params.getCdr();
+        }
+        return eval(env);
     }
 }

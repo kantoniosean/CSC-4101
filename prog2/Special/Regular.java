@@ -13,7 +13,9 @@ public class Regular extends Special {
     }
 
     public Node eval(Node n, Environment env) {
-        // TODO Auto-generated method stub
+        // regular ident that's not a special case, so we want to lookup its value.
+        // if it's a procedure (closure/built-in), we want to apply its args and eval
+        // else return eval of the lookup node
         return null;
     }
 }

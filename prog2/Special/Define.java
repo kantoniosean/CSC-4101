@@ -13,7 +13,12 @@ public class Define extends Special {
 	}
 
 	public Node eval(Node n, Environment env) {
-		// TODO Auto-generated method stub
+		// (define x ...) or (define (foo x) ...)
+		if (n.getCdr().getCar().isPair()) { // if variable being defined is a list (function)
+			// apply param to func and create a new frame
+		} else { // define new variable in given env
+
+		}
 		return null;
 	}
 }

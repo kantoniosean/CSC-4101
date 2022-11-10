@@ -13,10 +13,10 @@ public class Scheme4101 {
 
 	private static Environment env = null;
 
-	private static final String prompt1 = "Scheme4101> ";
+	// private static final String prompt1 = "Scheme4101> ";
 	private static final String prompt = "> ";
 
-	private static final String ini_file = "ini.scm";
+	// private static final String ini_file = "ini.scm";
 
 	public static void main(String argv[]) {
 
@@ -88,9 +88,7 @@ public class Scheme4101 {
 		BuiltIn.setGlobalEnv(env);
 
 		// Read-eval-print loop
-
-		// TODO: print prompt and evaluate the expression
-		System.out.print(prompt);
+		System.out.print(prompt + ' ');
 		root = parser.parseExp();
 		while (root != null) {
 			root.eval(env).print(0);

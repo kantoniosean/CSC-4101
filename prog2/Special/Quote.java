@@ -13,7 +13,7 @@ public class Quote extends Special {
     }
 
     public Node eval(Node n, Environment env) {
-        // TODO Auto-generated method stub
-        return null;
+        // (quote ...) return eval of everything after quote
+        return eval(n.getCdr(), env);
     }
 }

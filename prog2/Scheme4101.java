@@ -13,8 +13,8 @@ public class Scheme4101 {
 
 	private static Environment env = null;
 
-	private static final String prompt = "Scheme4101> ";
-	private static final String prompt1 = "> ";
+	private static final String prompt1 = "Scheme4101> ";
+	private static final String prompt = "> ";
 
 	private static final String ini_file = "ini.scm";
 
@@ -90,9 +90,10 @@ public class Scheme4101 {
 		// Read-eval-print loop
 
 		// TODO: print prompt and evaluate the expression
+		System.out.print(prompt);
 		root = parser.parseExp();
 		while (root != null) {
-			root.print(0);
+			root.eval(env).print(0);
 			root = parser.parseExp();
 		}
 		System.exit(0);

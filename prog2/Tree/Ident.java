@@ -22,4 +22,8 @@ public class Ident extends Node {
     public String getName() {
         return name;
     }
+
+    public Node eval(Environment env) {
+        return env.lookup(this);
+    }
 }

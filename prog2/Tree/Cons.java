@@ -88,4 +88,8 @@ public class Cons extends Node {
 	public Node getCdr() {
 		return cdr;
 	}
+
+	public Node eval(Environment env) {
+		return form.eval(this, env);
+	}
 }

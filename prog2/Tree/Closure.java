@@ -54,14 +54,21 @@ public class Closure extends Node {
         Environment env = new Environment(c.getEnv()); // creates new frame with enclosing env c.getEnv()
         // Now we want to fill up the scope with the functions params
         Node params = args.getCdr();
+        Node eval_arg = null;
+        Node id = null;
+        Node val = null;
+
         while (!params.isNull()) {
             // car should be a param variable and we want to look for it in the surrounding
             // environments
-            Node id = params.getCar();
-            Node val = env.lookup(id);
+            id = params.getCar();
+            val = env.lookup(id);
             env.define(id, val);
             params = params.getCdr();
         }
+        Cons exp = new Cons(id, new Cons(val, Nil.getInstance()));
+        eval_arg = new Cons(exp, new Cons(env, Nil.getInstance()));
         return eval(env);
+        // return eval(eval_arg);
     }
 }

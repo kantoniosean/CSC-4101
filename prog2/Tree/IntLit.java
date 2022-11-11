@@ -18,4 +18,8 @@ public class IntLit extends Node {
 	public boolean isNumber() {
 		return true;
 	}
+
+	public Node eval(Environment env) {
+		return this;
+	}
 }

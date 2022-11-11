@@ -18,4 +18,8 @@ public class StrLit extends Node {
     public boolean isString() {
         return true;
     }
+
+    public Node eval(Environment env) {
+        return this;
+    }
 }

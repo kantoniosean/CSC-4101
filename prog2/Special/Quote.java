@@ -2,6 +2,7 @@
 
 package Special;
 
+import Tree.Environment;
 import Tree.Node;
 import Print.Printer;
 
@@ -9,5 +10,10 @@ public class Quote extends Special {
 
     public void print(Node t, int n, boolean p) {
         Printer.printQuote(t, n, p);
+    }
+
+    public Node eval(Node n, Environment env) {
+        // (quote ...) return eval of everything after quote
+        return eval(n.getCdr(), env);
     }
 }

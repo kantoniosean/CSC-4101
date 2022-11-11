@@ -2,6 +2,7 @@
 
 package Special;
 
+import Tree.Environment;
 import Tree.Node;
 
 // There are several different approaches for how to implement the Special
@@ -9,5 +10,8 @@ import Tree.Node;
 // is to not add any fields and to use empty constructors.
 
 abstract public class Special {
+
     public abstract void print(Node t, int n, boolean p);
+
+    public abstract Node eval(Node n, Environment env);
 }

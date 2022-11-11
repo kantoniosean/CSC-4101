@@ -2,6 +2,8 @@
 
 package Special;
 
+import Tree.Closure;
+import Tree.Environment;
 import Tree.Node;
 import Print.Printer;
 
@@ -9,5 +11,9 @@ public class Lambda extends Special {
 
 	public void print(Node t, int n, boolean p) {
 		Printer.printLambda(t, n, p);
+	}
+
+	public Node eval(Node t, Environment env) {
+		return new Closure(t, env);
 	}
 }

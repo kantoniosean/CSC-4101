@@ -56,17 +56,30 @@ public class BuiltIn extends Node {
     // to report an error. It should be overwritten only in classes
     // BuiltIn and Closure.
     public Node apply(Node args) {
+        Node first = args.getCar();
+        Node second = args.getCdr();
+
         if (args == null) {
             return null;
         }
 
         String name = symbol.getName();
 
-        // if (name.equals("b+")) {
-        // if (car.isNumber() && cdr.isNumber()) {
+        if (name == "symbol?") {
+            // should return new booleanlit object ?
+        }
 
-        // }
-        // }
+        else if (name == "number?") {
+            // should return new booleanlit ?
+        }
+
+        else if (name == "b+") {
+            if (first.isNumber() && second.isNumber()) {
+                // should some how return the value of the two numbers added together
+                // return new IntLit(0);
+            }
+        } else if (name == "b-") {
+        }
 
         return null;
     }

@@ -53,22 +53,23 @@ public class Closure extends Node {
         // should I use a try catch clause here in case the first arg was not a closure?
         Environment env = new Environment(c.getEnv()); // creates new frame with enclosing env c.getEnv()
         // Now we want to fill up the scope with the functions params
-        Node params = args.getCdr();
-        Node eval_arg = null;
-        Node id = null;
-        Node val = null;
-
-        while (!params.isNull()) {
+        Node params = args.getCdr(); // parameters to apply to the func
+        Node id = null; // id to lookup in environment
+        Node val = null; // value gained from id
+        while (!params.isNull()) { // binds the parameters to the actual variable values in the enclosing env
             // car should be a param variable and we want to look for it in the surrounding
             // environments
             id = params.getCar();
             val = env.lookup(id);
-            env.define(id, val);
+            env.define(id, val); // if id was found, val was changed so we want to add that value to the user
+                                 // func env
             params = params.getCdr();
         }
-        Cons exp = new Cons(id, new Cons(val, Nil.getInstance()));
-        eval_arg = new Cons(exp, new Cons(env, Nil.getInstance()));
+
+        Node func = c.getFun();
+        while (!func.isNull()) { // func should be a cons node here with special form of lambda.
+
+        }
         return eval(env);
-        // return eval(eval_arg);
     }
 }

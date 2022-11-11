@@ -99,14 +99,10 @@ public class Environment extends Node {
 	}
 
 	public void define(Node id, Node val) {
-
-		// this may not be right i havent tested it
 		Node content = find(id, scope);
 		Node innCar = new Cons(val, Nil.getInstance());
 		Node inCar = new Cons(id, innCar);
 
-		// I'd assume above is doing (id val) but I'm confused why we change the scope
-		// below.
 		if (content == null) {
 			// id was not in scope, so we want to make a new (id, val) pair in the frame
 			scope = new Cons(inCar, scope);
@@ -117,6 +113,9 @@ public class Environment extends Node {
 
 	}
 
+	// define for set!
+	// sets variable that may have been defined outside of scope as a different
+	// variable
 	public void assign(Node id, Node val) {
 		Node content = find(id, scope);
 

@@ -160,10 +160,11 @@ public class Scheme4101 {
 		BuiltIn.setGlobalEnv(env);
 
 		// Read-eval-print loop
-		System.out.print(prompt + ' ');
+		System.out.print(prompt);
 		root = parser.parseExp();
 		while (root != null) {
 			root.eval(env).print(0);
+			System.out.print(prompt);
 			root = parser.parseExp();
 		}
 		System.exit(0);

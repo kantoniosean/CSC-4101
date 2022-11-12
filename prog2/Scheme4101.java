@@ -66,77 +66,77 @@ public class Scheme4101 {
 		Node id = new Ident("symbol?");
 		env.define(id, new BuiltIn(id));
 
-		Node number = new Ident("number?");
-		env.define(id, new BuiltIn(number));
+		id = new Ident("number?");
+		env.define(id, new BuiltIn(id));
 
-		Node bplus = new Ident("b+");
-		env.define(id, new BuiltIn(bplus));
+		id = new Ident("b+");
+		env.define(id, new BuiltIn(id));
 
-		Node bminus = new Ident("b-");
-		env.define(id, new BuiltIn(bminus));
+		id = new Ident("b-");
+		env.define(id, new BuiltIn(id));
 
-		Node bmult = new Ident("b*");
-		env.define(id, new BuiltIn(bmult));
+		id = new Ident("b*");
+		env.define(id, new BuiltIn(id));
 
-		Node bdiv = new Ident("b/");
-		env.define(id, new BuiltIn(bdiv));
+		id = new Ident("b/");
+		env.define(id, new BuiltIn(id));
 
-		Node bequ = new Ident("b=");
-		env.define(id, new BuiltIn(bequ));
+		id = new Ident("b=");
+		env.define(id, new BuiltIn(id));
 
-		Node bless = new Ident("b<");
-		env.define(id, new BuiltIn(bless));
+		id = new Ident("b<");
+		env.define(id, new BuiltIn(id));
 
-		Node car = new Ident("car");
-		env.define(id, new BuiltIn(car));
+		id = new Ident("car");
+		env.define(id, new BuiltIn(id));
 
-		Node cdr = new Ident("cdr");
-		env.define(id, new BuiltIn(cdr));
+		id = new Ident("cdr");
+		env.define(id, new BuiltIn(id));
 
-		Node cons = new Ident("cons");
-		env.define(id, new BuiltIn(cons));
+		id = new Ident("cons");
+		env.define(id, new BuiltIn(id));
 
-		Node setCar = new Ident("set-car!");
-		env.define(id, new BuiltIn(setCar));
+		id = new Ident("set-car!");
+		env.define(id, new BuiltIn(id));
 
-		Node setCdr = new Ident("set-cdr!");
-		env.define(id, new BuiltIn(setCdr));
+		id = new Ident("set-cdr!");
+		env.define(id, new BuiltIn(id));
 
-		Node Null = new Ident("null?");
-		env.define(id, new BuiltIn(Null));
+		id = new Ident("null?");
+		env.define(id, new BuiltIn(id));
 
-		Node pair = new Ident("pair?");
-		env.define(id, new BuiltIn(pair));
+		id = new Ident("pair?");
+		env.define(id, new BuiltIn(id));
 
-		Node eq = new Ident("eq?");
-		env.define(id, new BuiltIn(eq));
+		id = new Ident("eq?");
+		env.define(id, new BuiltIn(id));
 
-		Node procedure = new Ident("procedure?");
-		env.define(id, new BuiltIn(procedure));
+		id = new Ident("procedure?");
+		env.define(id, new BuiltIn(id));
 
-		Node read = new Ident("read");
-		env.define(id, new BuiltIn(read));
+		id = new Ident("read");
+		env.define(id, new BuiltIn(id));
 
-		Node write = new Ident("write");
-		env.define(id, new BuiltIn(write));
+		id = new Ident("write");
+		env.define(id, new BuiltIn(id));
 
-		Node disp = new Ident("display");
-		env.define(id, new BuiltIn(disp));
+		id = new Ident("display");
+		env.define(id, new BuiltIn(id));
 
-		Node newLine = new Ident("newline");
-		env.define(id, new BuiltIn(newLine));
+		id = new Ident("newline");
+		env.define(id, new BuiltIn(id));
 
-		Node eval = new Ident("eval");
-		env.define(id, new BuiltIn(eval));
+		id = new Ident("eval");
+		env.define(id, new BuiltIn(id));
 
-		Node apply = new Ident("apply");
-		env.define(id, new BuiltIn(apply));
+		id = new Ident("apply");
+		env.define(id, new BuiltIn(id));
 
-		Node interactEnv = new Ident("interaction-environment");
-		env.define(id, new BuiltIn(interactEnv));
+		id = new Ident("interaction-environment");
+		env.define(id, new BuiltIn(id));
 
-		Node load = new Ident("load");
-		env.define(id, new BuiltIn(load));
+		id = new Ident("load");
+		env.define(id, new BuiltIn(id));
 
 		/*
 		 * BuiltIn's to add before scanning ini.scm

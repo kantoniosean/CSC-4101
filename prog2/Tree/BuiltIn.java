@@ -58,6 +58,8 @@ public class BuiltIn extends Node {
     public Node apply(Node args) {
         Node first = args.getCar();
         Node second = args.getCdr();
+        if (!second.isNull())
+            second = second.getCar();
 
         String one = "";
         String two = "";
@@ -65,12 +67,7 @@ public class BuiltIn extends Node {
         int num1 = 0;
         int num2 = 0;
 
-        if (args == null) {
-            return null;
-        }
-
         String name = symbol.getName();
-
         if (name == "symbol?") {
             // not sure what symbol? does yet
             // have to look it up
@@ -95,7 +92,9 @@ public class BuiltIn extends Node {
                 return new IntLit(num1 + num2);
             }
 
-        } else if (name == "b-") {
+        }
+
+        else if (name == "b-") {
             if (first.isNumber() && second.isNumber()) {
 
                 one = first.getName();

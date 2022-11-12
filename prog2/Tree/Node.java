@@ -112,6 +112,14 @@ public class Node {
         return "";
     }
 
+    public int getIntVal() {
+        return 0;
+    }
+
+    public String getStrVal() {
+        return "";
+    }
+
     public Node eval(Environment env) {
         System.err.println("Error: Node.eval not yet implemented");
         return Nil.getInstance();

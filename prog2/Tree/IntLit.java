@@ -15,6 +15,10 @@ public class IntLit extends Node {
 		Printer.printIntLit(n, intVal);
 	}
 
+	public int getIntVal() {
+		return intVal;
+	}
+
 	public boolean isNumber() {
 		return true;
 	}

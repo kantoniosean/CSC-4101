@@ -74,31 +74,23 @@ public class BuiltIn extends Node {
         String one = "";
         String two = "";
 
-        int num1 = 0;
-        int num2 = 0;
-
         String name = symbol.getName();
 
-        if (name.equals("symbol?")) {
+        if (name == "symbol?") {
             return BooleanLit.getInstance(first.isSymbol());
         }
 
-        else if (name.equals("number?")) {
+        else if (name == "number?") {
             if (first.isNumber()) {
+
                 return BooleanLit.getInstance(true);
             }
         }
 
-        else if (name.equals("b+")) {
+        else if (name == "b+") {
             if (first.isNumber() && second.isNumber()) {
 
-                one = first.getName();
-                two = second.getName();
-
-                num1 = Integer.parseInt(one);
-                num2 = Integer.parseInt(two);
-
-                return new IntLit(num1 + num2);
+                return new IntLit(first.getIntVal() + second.getIntVal());
             }
 
             else {
@@ -111,13 +103,7 @@ public class BuiltIn extends Node {
         else if (name == "b-") {
             if (first.isNumber() && second.isNumber()) {
 
-                one = first.getName();
-                two = second.getName();
-
-                num1 = Integer.parseInt(one);
-                num2 = Integer.parseInt(two);
-
-                return new IntLit(num1 - num2);
+                return new IntLit(first.getIntVal() - second.getIntVal());
             }
 
             else {
@@ -129,13 +115,7 @@ public class BuiltIn extends Node {
         else if (name == "b*") {
             if (first.isNumber() && second.isNumber()) {
 
-                one = first.getName();
-                two = second.getName();
-
-                num1 = Integer.parseInt(one);
-                num2 = Integer.parseInt(two);
-
-                return new IntLit(num1 * num2);
+                return new IntLit(first.getIntVal() * second.getIntVal());
             }
 
             else {
@@ -147,13 +127,7 @@ public class BuiltIn extends Node {
         else if (name == "b/") {
             if (first.isNumber() && second.isNumber()) {
 
-                one = first.getName();
-                two = second.getName();
-
-                num1 = Integer.parseInt(one);
-                num2 = Integer.parseInt(two);
-
-                return new IntLit(num1 / num2);
+                return new IntLit(first.getIntVal() / second.getIntVal());
             }
 
             else {
@@ -165,13 +139,7 @@ public class BuiltIn extends Node {
         else if (name == "b=") {
             if (first.isBoolean() && second.isBoolean()) {
 
-                one = first.getName();
-                two = second.getName();
-
-                num1 = Integer.parseInt(one);
-                num2 = Integer.parseInt(two);
-
-                return BooleanLit.getInstance(num1 == num2);
+                return BooleanLit.getInstance(first.getIntVal() == second.getIntVal());
 
             }
 
@@ -185,13 +153,7 @@ public class BuiltIn extends Node {
         else if (name == "b<") {
             if (first.isBoolean() && second.isBoolean()) {
 
-                one = first.getName();
-                two = second.getName();
-
-                num1 = Integer.parseInt(one);
-                num2 = Integer.parseInt(two);
-
-                return BooleanLit.getInstance(num1 < num2);
+                return BooleanLit.getInstance(first.getIntVal() < second.getIntVal());
 
             }
 
@@ -231,15 +193,13 @@ public class BuiltIn extends Node {
             }
 
             else {
-                one = first.getName();
-                two = second.getName();
 
-                return BooleanLit.getInstance(one == two);
+                return BooleanLit.getInstance(first.getStrVal() == second.getStrVal());
             }
         }
 
         else if (name == "procedure?") {
-            // not sure
+            return BooleanLit.getInstance(first.isProcedure());
         }
 
         else if (name == "read") {
@@ -279,7 +239,7 @@ public class BuiltIn extends Node {
                 return Nil.getInstance();
             }
 
-            String filename = first.getName();
+            String filename = first.getStrVal();
             try {
                 Scanner scanner = new Scanner(new FileInputStream(filename));
                 Parser parser = new Parser(scanner);

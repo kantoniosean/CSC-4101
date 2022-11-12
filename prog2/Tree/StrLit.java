@@ -22,4 +22,8 @@ public class StrLit extends Node {
     public Node eval(Environment env) {
         return this;
     }
+
+    public String getStrVal() {
+        return strVal;
+    }
 }

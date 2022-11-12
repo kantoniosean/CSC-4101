@@ -24,6 +24,7 @@ public class Ident extends Node {
     }
 
     public Node eval(Environment env) {
+        System.out.println("Ident");
         return env.lookup(this);
     }
 }

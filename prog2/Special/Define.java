@@ -33,12 +33,12 @@ public class Define extends Special {
 			Node args = func.getCdr();
 			Cons lambda = new Cons(new Ident("lambda"), new Cons(args, n.getCdr().getCdr()));
 			Closure f = new Closure(lambda, env);
-			env.define(func.getCar(), f);
-			return f;
+			env.define(func.getCar(), f); // func is defined now.
+			return new Ident("; no values returned");
 		} else { // define new variable in given env
 			Node id = n.getCdr().getCar();
 			env.define(id, n.getCdr().getCdr().getCar()); // define takes care of looking at scope
-			return null;
+			return new Ident("; no values returned");
 		}
 	}
 }

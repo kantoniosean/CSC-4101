@@ -45,31 +45,34 @@ public class Closure extends Node {
         System.out.println(" }");
     }
 
+    public Node eval(Node t, Environment env) {
+        // Closure was identified after looking up ident in env so, we want to construct
+        // an args Node
+        // that we can pass to apply to apply funcs params to its arguments.
+        // apply will bind values to param in env and then recursively call eval on each
+        // node in the funcs body.
+        // t should be a Closure, with car = lambda ... and cadr = env
+        return this;
+    }
+
     // The method apply() should be defined in class Node
     // to report an error. It should be overwritten only in classes
     // BuiltIn and Closure.
-    public Node apply(Node args) {
+    public Node apply(Node args) { // args is a closure being passed from eval
+        int i = 0;
         Closure c = (Closure) args.getCar();
-        // should I use a try catch clause here in case the first arg was not a closure?
         Environment env = new Environment(c.getEnv()); // creates new frame with enclosing env c.getEnv()
         // Now we want to fill up the scope with the functions params
-        Node params = args.getCdr(); // parameters to apply to the func
-        Node id = null; // id to lookup in environment
-        Node val = null; // value gained from id
-        while (!params.isNull()) { // binds the parameters to the actual variable values in the enclosing env
-            // car should be a param variable and we want to look for it in the surrounding
-            // environments
-            id = params.getCar();
-            val = env.lookup(id);
-            env.define(id, val); // if id was found, val was changed so we want to add that value to the user
-                                 // func env
+        Node params = c.getFun().getCdr().getCar(); // parameters to apply to the func
+        Node values = args.getCdr();
+        while (!params.isNull() && !values.isNull()) {
+            // args.cdr = (a1 ... an)
+            env.define(params.getCar(), values.getCar());
             params = params.getCdr();
+            values = values.getCdr();
         }
-
-        Node func = c.getFun();
-        while (!func.isNull()) { // func should be a cons node here with special form of lambda.
-
-        }
-        return eval(env);
+        return eval(c.getFun().getCdr().getCdr(), env);
+        // (lambda (...) b1 ... bn)
+        // c.car.cdr = ((...) b1 ... bn).cdr = (b1 ... bn) which is the body of the func
     }
 }

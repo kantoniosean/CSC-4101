@@ -15,6 +15,11 @@
 
 package Tree;
 
+import Parse.Scanner;
+import Parse.Parser;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 public class BuiltIn extends Node {
     // TODO: For allowing the built-in functions to access the environment,
     // keep a copy of the Environment here and synchronize it with
@@ -52,12 +57,17 @@ public class BuiltIn extends Node {
             System.out.println();
     }
 
+    public void error() {
+        System.out.println("Error in arguments :(");
+    }
+
     // The method apply() should be defined in class Node
     // to report an error. It should be overwritten only in classes
     // BuiltIn and Closure.
     public Node apply(Node args) {
         Node first = args.getCar();
         Node second = args.getCdr();
+
         if (!second.isNull())
             second = second.getCar();
 
@@ -68,19 +78,18 @@ public class BuiltIn extends Node {
         int num2 = 0;
 
         String name = symbol.getName();
-        if (name == "symbol?") {
-            // not sure what symbol? does yet
-            // have to look it up
 
+        if (name.equals("symbol?")) {
+            return BooleanLit.getInstance(first.isSymbol());
         }
 
-        else if (name == "number?") {
+        else if (name.equals("number?")) {
             if (first.isNumber()) {
                 return BooleanLit.getInstance(true);
             }
         }
 
-        else if (name == "b+") {
+        else if (name.equals("b+")) {
             if (first.isNumber() && second.isNumber()) {
 
                 one = first.getName();
@@ -90,6 +99,11 @@ public class BuiltIn extends Node {
                 num2 = Integer.parseInt(two);
 
                 return new IntLit(num1 + num2);
+            }
+
+            else {
+                error();
+                return new StrLit(":(");
             }
 
         }
@@ -103,7 +117,12 @@ public class BuiltIn extends Node {
                 num1 = Integer.parseInt(one);
                 num2 = Integer.parseInt(two);
 
-                return new IntLit(num1 + num2);
+                return new IntLit(num1 - num2);
+            }
+
+            else {
+                error();
+                return new StrLit(":(");
             }
         }
 
@@ -116,7 +135,12 @@ public class BuiltIn extends Node {
                 num1 = Integer.parseInt(one);
                 num2 = Integer.parseInt(two);
 
-                return new IntLit(num1 + num2);
+                return new IntLit(num1 * num2);
+            }
+
+            else {
+                error();
+                return new StrLit(":(");
             }
         }
 
@@ -129,7 +153,12 @@ public class BuiltIn extends Node {
                 num1 = Integer.parseInt(one);
                 num2 = Integer.parseInt(two);
 
-                return new IntLit(num1 + num2);
+                return new IntLit(num1 / num2);
+            }
+
+            else {
+                error();
+                return new StrLit(":(");
             }
         }
 
@@ -146,6 +175,11 @@ public class BuiltIn extends Node {
 
             }
 
+            else {
+                error();
+                return new StrLit(":(");
+            }
+
         }
 
         else if (name == "b<") {
@@ -159,6 +193,11 @@ public class BuiltIn extends Node {
 
                 return BooleanLit.getInstance(num1 < num2);
 
+            }
+
+            else {
+                error();
+                return new StrLit(":(");
             }
         }
 
@@ -182,7 +221,88 @@ public class BuiltIn extends Node {
             first.setCdr(second);
         }
 
-        return args;
+        else if (name == "pair?") {
+            return BooleanLit.getInstance(first.isPair());
+        }
+
+        else if (name == "eq?") {
+            if (first.isNull() && second.isNull()) {
+                return BooleanLit.getInstance(true);
+            }
+
+            else {
+                one = first.getName();
+                two = second.getName();
+
+                return BooleanLit.getInstance(one == two);
+            }
+        }
+
+        else if (name == "procedure?") {
+            // not sure
+        }
+
+        else if (name == "read") {
+            Parser parse = new Parser(new Scanner(System.in));
+            Node parsedEx = parse.parseExp();
+            return parsedEx;
+        }
+
+        else if (name == "write") {
+            return new StrLit(" ");
+
+        }
+
+        else if (name == "display") {
+            return first;
+        }
+
+        else if (name == "newline") {
+            return new StrLit("\n");
+        }
+
+        else if (name == "eval") {
+            return first;
+        }
+
+        else if (name == "apply") {
+            return first.apply(second);
+        }
+
+        else if (name == "interaction-environment") {
+            globalEnv.print(1);
+        }
+
+        if (name == "load") {
+            if (!first.isString()) {
+                System.err.println("Error: wrong type of argument");
+                return Nil.getInstance();
+            }
+
+            String filename = first.getName();
+            try {
+                Scanner scanner = new Scanner(new FileInputStream(filename));
+                Parser parser = new Parser(scanner);
+
+                Node root = parser.parseExp();
+                while (root != null) {
+                    root.eval(globalEnv);
+                    root = parser.parseExp();
+                }
+
+            }
+
+            catch (IOException e) {
+                System.err.println("Could not find file " + filename);
+            }
+
+            return Nil.getInstance(); // or Unspecific.getInstance();
+        }
+
+        else {
+
+            return Nil.getInstance();
+        }
     }
 
     // The easiest way to implement BuiltIn.apply is as an
@@ -190,24 +310,4 @@ public class BuiltIn extends Node {
     // the built-in functions. E.g., here's how load could
     // be implemented:
 
-    // if (name.equals("load")) {
-    // if (!arg1.isString()) {
-    // System.err.println("Error: wrong type of argument");
-    // return Nil.getInstance();
-    // }
-    // String filename = arg1.getStrVal();
-    // try {
-    // Scanner scanner = new Scanner(new FileInputStream(filename));
-    // Parser parser = new Parser(scanner);
-    //
-    // Node root = parser.parseExp();
-    // while (root != null) {
-    // root.eval(globalEnv);
-    // root = parser.parseExp();
-    // }
-    // } catch (IOException e) {
-    // System.err.println("Could not find file " + filename);
-    // }
-    // return Nil.getInstance(); // or Unspecific.getInstance();
-    // }
 }

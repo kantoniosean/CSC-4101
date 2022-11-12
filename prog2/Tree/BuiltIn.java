@@ -56,7 +56,134 @@ public class BuiltIn extends Node {
     // to report an error. It should be overwritten only in classes
     // BuiltIn and Closure.
     public Node apply(Node args) {
-        return null;
+        Node first = args.getCar();
+        Node second = args.getCdr();
+
+        String one = "";
+        String two = "";
+
+        int num1 = 0;
+        int num2 = 0;
+
+        if (args == null) {
+            return null;
+        }
+
+        String name = symbol.getName();
+
+        if (name == "symbol?") {
+            // not sure what symbol? does yet
+            // have to look it up
+
+        }
+
+        else if (name == "number?") {
+            if (first.isNumber()) {
+                return BooleanLit.getInstance(true);
+            }
+        }
+
+        else if (name == "b+") {
+            if (first.isNumber() && second.isNumber()) {
+
+                one = first.getName();
+                two = second.getName();
+
+                num1 = Integer.parseInt(one);
+                num2 = Integer.parseInt(two);
+
+                return new IntLit(num1 + num2);
+            }
+
+        } else if (name == "b-") {
+            if (first.isNumber() && second.isNumber()) {
+
+                one = first.getName();
+                two = second.getName();
+
+                num1 = Integer.parseInt(one);
+                num2 = Integer.parseInt(two);
+
+                return new IntLit(num1 + num2);
+            }
+        }
+
+        else if (name == "b*") {
+            if (first.isNumber() && second.isNumber()) {
+
+                one = first.getName();
+                two = second.getName();
+
+                num1 = Integer.parseInt(one);
+                num2 = Integer.parseInt(two);
+
+                return new IntLit(num1 + num2);
+            }
+        }
+
+        else if (name == "b/") {
+            if (first.isNumber() && second.isNumber()) {
+
+                one = first.getName();
+                two = second.getName();
+
+                num1 = Integer.parseInt(one);
+                num2 = Integer.parseInt(two);
+
+                return new IntLit(num1 + num2);
+            }
+        }
+
+        else if (name == "b=") {
+            if (first.isBoolean() && second.isBoolean()) {
+
+                one = first.getName();
+                two = second.getName();
+
+                num1 = Integer.parseInt(one);
+                num2 = Integer.parseInt(two);
+
+                return BooleanLit.getInstance(num1 == num2);
+
+            }
+
+        }
+
+        else if (name == "b<") {
+            if (first.isBoolean() && second.isBoolean()) {
+
+                one = first.getName();
+                two = second.getName();
+
+                num1 = Integer.parseInt(one);
+                num2 = Integer.parseInt(two);
+
+                return BooleanLit.getInstance(num1 < num2);
+
+            }
+        }
+
+        else if (name == "car") {
+            return first;
+        }
+
+        else if (name == "cdr") {
+            return second;
+        }
+
+        else if (name == "cons") {
+            return new Cons(first, second);
+        }
+
+        else if (name == "set-car!") {
+            first.setCar(second);
+        }
+
+        else if (name == "set-cdr!") {
+            first.setCdr(second);
+        }
+
+        return args;
     }
 
     // The easiest way to implement BuiltIn.apply is as an

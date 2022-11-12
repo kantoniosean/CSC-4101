@@ -66,6 +66,78 @@ public class Scheme4101 {
 		Node id = new Ident("symbol?");
 		env.define(id, new BuiltIn(id));
 
+		Node number = new Ident("number?");
+		env.define(id, new BuiltIn(number));
+
+		Node bplus = new Ident("b+");
+		env.define(id, new BuiltIn(bplus));
+
+		Node bminus = new Ident("b-");
+		env.define(id, new BuiltIn(bminus));
+
+		Node bmult = new Ident("b*");
+		env.define(id, new BuiltIn(bmult));
+
+		Node bdiv = new Ident("b/");
+		env.define(id, new BuiltIn(bdiv));
+
+		Node bequ = new Ident("b=");
+		env.define(id, new BuiltIn(bequ));
+
+		Node bless = new Ident("b<");
+		env.define(id, new BuiltIn(bless));
+
+		Node car = new Ident("car");
+		env.define(id, new BuiltIn(car));
+
+		Node cdr = new Ident("cdr");
+		env.define(id, new BuiltIn(cdr));
+
+		Node cons = new Ident("cons");
+		env.define(id, new BuiltIn(cons));
+
+		Node setCar = new Ident("set-car!");
+		env.define(id, new BuiltIn(setCar));
+
+		Node setCdr = new Ident("set-cdr!");
+		env.define(id, new BuiltIn(setCdr));
+
+		Node Null = new Ident("null?");
+		env.define(id, new BuiltIn(Null));
+
+		Node pair = new Ident("pair?");
+		env.define(id, new BuiltIn(pair));
+
+		Node eq = new Ident("eq?");
+		env.define(id, new BuiltIn(eq));
+
+		Node procedure = new Ident("procedure?");
+		env.define(id, new BuiltIn(procedure));
+
+		Node read = new Ident("read");
+		env.define(id, new BuiltIn(read));
+
+		Node write = new Ident("write");
+		env.define(id, new BuiltIn(write));
+
+		Node disp = new Ident("display");
+		env.define(id, new BuiltIn(disp));
+
+		Node newLine = new Ident("newline");
+		env.define(id, new BuiltIn(newLine));
+
+		Node eval = new Ident("eval");
+		env.define(id, new BuiltIn(eval));
+
+		Node apply = new Ident("apply");
+		env.define(id, new BuiltIn(apply));
+
+		Node interactEnv = new Ident("interaction-environment");
+		env.define(id, new BuiltIn(interactEnv));
+
+		Node load = new Ident("load");
+		env.define(id, new BuiltIn(load));
+
 		/*
 		 * BuiltIn's to add before scanning ini.scm
 		 * symbol?

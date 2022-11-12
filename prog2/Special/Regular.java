@@ -19,18 +19,18 @@ public class Regular extends Special {
         // else return eval of the lookup node
         // n = (f x1 ... xn)
         Node head = n.getCar();
-        if (head.isProcedure()) {
-            Node val = env.lookup(head);
+        Node val = env.lookup(head);
+        if (val.isProcedure()) {
             // val = eval(val, env); // evaluate closure
             Node args = Util.mapeval(n.getCdr(), env);
             Cons c = new Cons(val, args);
             return val.apply(c);
         } else {
-            // head = eval(head, env);
+            head = head.eval(env);
             if (n.getCdr().isNull())
-                return head;
+                return head.eval(env);
             else
-                return eval(n.getCdr(), env);
+                return n.getCdr().eval(env);
         }
     }
 }

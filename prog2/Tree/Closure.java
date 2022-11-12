@@ -59,7 +59,6 @@ public class Closure extends Node {
     // to report an error. It should be overwritten only in classes
     // BuiltIn and Closure.
     public Node apply(Node args) { // args is a closure being passed from eval
-        int i = 0;
         Closure c = (Closure) args.getCar();
         Environment env = new Environment(c.getEnv()); // creates new frame with enclosing env c.getEnv()
         // Now we want to fill up the scope with the functions params
@@ -71,7 +70,8 @@ public class Closure extends Node {
             params = params.getCdr();
             values = values.getCdr();
         }
-        return eval(c.getFun().getCdr().getCdr(), env);
+        Node body = c.getFun().getCdr().getCdr();
+        return body.eval(env);
         // (lambda (...) b1 ... bn)
         // c.car.cdr = ((...) b1 ... bn).cdr = (b1 ... bn) which is the body of the func
     }

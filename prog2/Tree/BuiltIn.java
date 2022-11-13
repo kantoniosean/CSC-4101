@@ -198,8 +198,19 @@ public class BuiltIn extends Node {
                 return BooleanLit.getInstance(true);
             }
 
-            else {
+            else if (first.isNumber() && second.isNumber()) {
+                return BooleanLit.getInstance(first.getIntVal() == second.getIntVal());
+            }
 
+            else if (first.isSymbol() && second.isSymbol()) {
+                return BooleanLit.getInstance(first.getName() == second.getName());
+            }
+
+            else if (first.isString() && second.isString()) {
+                return BooleanLit.getInstance(first.getStrVal() == second.getStrVal());
+            }
+
+            else {
                 return BooleanLit.getInstance(first.getStrVal() == second.getStrVal());
             }
         }

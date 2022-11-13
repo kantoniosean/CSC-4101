@@ -65,8 +65,8 @@ public class BuiltIn extends Node {
     // to report an error. It should be overwritten only in classes
     // BuiltIn and Closure.
     public Node apply(Node args) {
-        Node first = args.getCar();
-        Node second = args.getCdr();
+        Node first = args.getCdr().getCar();
+        Node second = args.getCdr().getCdr();
 
         if (!second.isNull())
             second = second.getCar();
@@ -102,6 +102,7 @@ public class BuiltIn extends Node {
             }
 
             else {
+                System.out.println("HERE");
                 error();
                 return new StrLit(":(");
             }

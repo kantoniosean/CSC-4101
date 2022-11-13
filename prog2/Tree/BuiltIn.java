@@ -68,11 +68,16 @@ public class BuiltIn extends Node {
         Node first = args.getCar();
         Node second = args.getCdr();
 
-        if (!second.isNull())
-            second = second.getCar();
+        if (first.isNull()) {
+            first = Nil.getInstance();
+        }
 
-        String one = "";
-        String two = "";
+        if (!second.isNull()) {
+            second = second.getCar();
+        } else {
+            second = Nil.getInstance();
+
+        }
 
         String name = symbol.getName();
 

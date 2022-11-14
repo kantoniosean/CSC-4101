@@ -24,10 +24,6 @@ public class Regular extends Special {
         // System.out.println("head pair: " + head.getCar().getName() + " val: " + val);
         // } else
         // System.out.println("head: " + head.getName() + " val: " + val.getName());
-        System.out.print("head: ");
-        head.print(0);
-        System.out.print("val: ");
-        val.print(0);
         if (val.isProcedure()) {
             // val = eval(val, env); // evaluate closure
             Node args = Util.mapeval(n.getCdr(), env);

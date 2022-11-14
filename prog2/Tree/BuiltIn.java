@@ -62,13 +62,7 @@ public class BuiltIn extends Node {
     // to report an error. It should be overwritten only in classes
     // BuiltIn and Closure.
     public Node apply(Node args) {
-        System.out.println();
-        args.print(0);
-        System.out.println();
         Node first = args.getCdr().getCar();
-        System.out.println();
-        first.print(0);
-        System.out.println();
         Node second = args.getCdr().getCdr();
 
         if (first.isNull()) {
@@ -179,7 +173,6 @@ public class BuiltIn extends Node {
         }
 
         else if (name == "car") {
-            first.print(0);
             return first.getCar();
         }
 
@@ -239,7 +232,8 @@ public class BuiltIn extends Node {
         }
 
         else if (name == "apply") {
-            return first.apply(second);
+            Cons arg = new Cons(first, second);
+            return first.apply(arg);
         }
 
         else if (name == "interaction-environment") {

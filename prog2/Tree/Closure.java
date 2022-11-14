@@ -67,25 +67,11 @@ public class Closure extends Node {
         Node values = args.getCdr();
         while (!params.isNull()) {
             // args.cdr = (a1 ... an)
-            params.print(0);
             if (params.isSymbol()) {
-                System.out.println("VALUES: ");
-                values.print(0);
-                System.out.println("PARAM: ");
-                params.print(0);
                 values = new Cons(new Ident("quote"), new Cons(values, Nil.getInstance()));
-                System.out.println();
-                values.print(0);
-                System.out.println();
-                System.out.print("l val: ");
-                values.eval(env).print(0);
                 env.define(params, values.eval(env));
-                System.out.println();
-                env.lookup(params).print(0);
-                System.out.println();
                 break; // rest of values are in params list
             } else {
-                values.getCar().print(0);
                 if (!values.getCar().getCar().isSymbol())
                     env.define(params.getCar(), values.getCar());
                 else
@@ -94,7 +80,6 @@ public class Closure extends Node {
             params = params.getCdr();
             values = values.getCdr();
         }
-        env.lookup(params).print(0);
         Node body = c.getFun().getCdr().getCdr();
         if (body.isPair() && body.getCdr().isNull())
             body = body.getCar();

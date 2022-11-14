@@ -86,10 +86,7 @@ public class BuiltIn extends Node {
         }
 
         else if (name == "number?") {
-            if (first.isNumber()) {
-
-                return BooleanLit.getInstance(true);
-            }
+            return BooleanLit.getInstance(first.isNumber());
         }
 
         else if (name == "b+") {
@@ -161,6 +158,17 @@ public class BuiltIn extends Node {
 
                 return BooleanLit.getInstance(first.getIntVal() < second.getIntVal());
 
+            }
+
+            else {
+                error();
+                return new StrLit(":(");
+            }
+        }
+
+        else if (name == "b>") {
+            if (first.isNumber() && second.isNumber()) {
+                return BooleanLit.getInstance(first.getIntVal() > second.getIntVal());
             }
 
             else {

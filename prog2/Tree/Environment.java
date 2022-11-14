@@ -88,17 +88,12 @@ public class Environment extends Node {
 	public Node lookup(Node id) {
 		Node val = find(id, scope);
 		if (val == null && env == null) {
-			id.print(0);
 			System.out.println("undefined variable");
 			return Nil.getInstance();
 		} else if (val == null) {
 			// look up the identifier in the enclosing scope
-			System.out.print("enclose: ");
-			id.print(0);
 			return env.lookup(id);
 		} else {
-			System.out.print("found: ");
-			val.print(0);
 			// get the value out of the list we got from find()
 			return val.getCar();
 		}

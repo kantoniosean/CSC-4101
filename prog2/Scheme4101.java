@@ -58,9 +58,6 @@ public class Scheme4101 {
 		Parser parser = new Parser(scanner);
 		Node root;
 
-		// TODO: Create and populate the built-in environment and
-		// create the top-level environment
-
 		env = new Environment();
 		BuiltIn.setGlobalEnv(env);
 		//

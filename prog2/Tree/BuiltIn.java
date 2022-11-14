@@ -143,7 +143,7 @@ public class BuiltIn extends Node {
         }
 
         else if (name == "b=") {
-            if (first.isBoolean() && second.isBoolean()) {
+            if (first.isNumber() && second.isNumber()) {
 
                 return BooleanLit.getInstance(first.getIntVal() == second.getIntVal());
 

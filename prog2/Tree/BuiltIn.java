@@ -21,9 +21,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class BuiltIn extends Node {
-    // TODO: For allowing the built-in functions to access the environment,
-    // keep a copy of the Environment here and synchronize it with
-    // class Scheme4101.
 
     private static Environment globalEnv = null;
 
@@ -65,7 +62,13 @@ public class BuiltIn extends Node {
     // to report an error. It should be overwritten only in classes
     // BuiltIn and Closure.
     public Node apply(Node args) {
+        System.out.println();
+        args.print(0);
+        System.out.println();
         Node first = args.getCdr().getCar();
+        System.out.println();
+        first.print(0);
+        System.out.println();
         Node second = args.getCdr().getCdr();
 
         if (first.isNull()) {
@@ -94,12 +97,10 @@ public class BuiltIn extends Node {
 
         else if (name == "b+") {
             if (first.isNumber() && second.isNumber()) {
-
                 return new IntLit(first.getIntVal() + second.getIntVal());
             }
 
             else {
-                System.out.println("HERE");
                 error();
                 return new StrLit(":(");
             }
@@ -143,16 +144,7 @@ public class BuiltIn extends Node {
         }
 
         else if (name == "b=") {
-            if (first.isBoolean() && second.isBoolean()) {
-
-                return BooleanLit.getInstance(first.getIntVal() == second.getIntVal());
-
-            }
-
-            else {
-                error();
-                return new StrLit(":(");
-            }
+            return BooleanLit.getInstance(first.eval(globalEnv) == second.eval(globalEnv));
 
         }
 
@@ -170,11 +162,12 @@ public class BuiltIn extends Node {
         }
 
         else if (name == "car") {
-            return first;
+            first.print(0);
+            return first.getCar();
         }
 
         else if (name == "cdr") {
-            return second;
+            return first.getCdr();
         }
 
         else if (name == "cons") {
@@ -193,15 +186,12 @@ public class BuiltIn extends Node {
             return BooleanLit.getInstance(first.isPair());
         }
 
+        else if (name == "null?") {
+            return BooleanLit.getInstance(first.isNull());
+        }
+
         else if (name == "eq?") {
-            if (first.isNull() && second.isNull()) {
-                return BooleanLit.getInstance(true);
-            }
-
-            else {
-
-                return BooleanLit.getInstance(first.getStrVal() == second.getStrVal());
-            }
+            return BooleanLit.getInstance(first.equals(second));
         }
 
         else if (name == "procedure?") {

@@ -5,9 +5,12 @@ import Parse.Parser;
 import Tokens.Token;
 import Tokens.TokenType;
 import Tree.BuiltIn;
+import Tree.Cons;
 import Tree.Environment;
 import Tree.Ident;
+import Tree.Nil;
 import Tree.Node;
+import Tree.StrLit;
 
 public class Scheme4101 {
 
@@ -138,23 +141,10 @@ public class Scheme4101 {
 		id = new Ident("load");
 		env.define(id, new BuiltIn(id));
 
-		/*
-		 * BuiltIn's to add before scanning ini.scm
-		 * symbol?
-		 * number?
-		 * b+, b-, etc.
-		 * car, cdr, set-car!, set-cdr!, null?, cons, pair?, eq?
-		 * procedure?
-		 * read/write/display/newline
-		 * eval, apply, interaction-environment
-		 * load
-		 */
-
-		// apply() takes "Node args" as an argument (which would be a Cons node)
-		// and the car or first argument should be a closure that contains the enclosing
-		// environment and
-		// a lambda expression if needed.
-		// BuiltIn.apply(Closure, ...)
+		// initial built-ins are defined, now go through ini.scm using load and eval
+		// each define
+		Cons load = new Cons(new Ident("load"), new Cons(new StrLit("ini.scm"), Nil.getInstance()));
+		load.eval(env);
 
 		env = new Environment(env);
 		BuiltIn.setGlobalEnv(env);

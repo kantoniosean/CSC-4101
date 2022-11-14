@@ -91,6 +91,7 @@ public class Node {
     }
 
     public Node getCar() {
+        this.print(0);
         System.err.println("Error: argument of car is not a pair");
         return Nil.getInstance();
     }
@@ -121,6 +122,7 @@ public class Node {
     }
 
     public Node eval(Environment env) {
+        this.print(0);
         System.err.println("Error: Node.eval not yet implemented");
         return Nil.getInstance();
     }

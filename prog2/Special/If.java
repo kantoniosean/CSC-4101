@@ -22,6 +22,7 @@ public class If extends Special {
         // we do isProcedure on Node returned from lookup to make sure it's a func.
         // then, we apply the parameters to the func to get a return value of #t or #f.
         // if it's true we execute a, else we execute b
+        n.print(0);
         Node curr = n.getCdr(); // ((= x y) a b)
         Node func = env.lookup(curr.getCar().getCar()); // lookup "=" in environment
         if (func.isProcedure()) { // if lookup got a closure/built-in, apply the params to it.

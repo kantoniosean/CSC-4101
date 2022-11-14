@@ -24,6 +24,9 @@ public class Util {
     public static Node mapeval(Node exp, Environment env) {
         if (exp.isNull())
             return Nil.getInstance();
+        else if (exp.getCar().isNull()) {
+            return new Cons(Nil.getInstance(), mapeval(exp.getCdr(), env));
+        }
         return new Cons(exp.getCar().eval(env), mapeval(exp.getCdr(), env));
     }
 

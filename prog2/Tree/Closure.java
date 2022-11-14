@@ -63,16 +63,43 @@ public class Closure extends Node {
         Environment env = new Environment(c.getEnv()); // creates new frame with enclosing env c.getEnv()
         // Now we want to fill up the scope with the functions params
         Node params = c.getFun().getCdr().getCar(); // parameters to apply to the func
+        // if params is a symbol, apply list of values to param
         Node values = args.getCdr();
-        while (!params.isNull() && !values.isNull()) {
+        while (!params.isNull()) {
             // args.cdr = (a1 ... an)
-            env.define(params.getCar(), values.getCar());
+            params.print(0);
+            if (params.isSymbol()) {
+                System.out.println("VALUES: ");
+                values.print(0);
+                System.out.println("PARAM: ");
+                params.print(0);
+                values = new Cons(new Ident("quote"), new Cons(values, Nil.getInstance()));
+                System.out.println();
+                values.print(0);
+                System.out.println();
+                System.out.print("l val: ");
+                values.eval(env).print(0);
+                env.define(params, values.eval(env));
+                System.out.println();
+                env.lookup(params).print(0);
+                System.out.println();
+                break; // rest of values are in params list
+            } else {
+                values.getCar().print(0);
+                if (!values.getCar().getCar().isSymbol())
+                    env.define(params.getCar(), values.getCar());
+                else
+                    env.define(params.getCar(), values.getCar().eval(env));
+            }
             params = params.getCdr();
             values = values.getCdr();
         }
+        env.lookup(params).print(0);
         Node body = c.getFun().getCdr().getCdr();
+        if (body.isPair() && body.getCdr().isNull())
+            body = body.getCar();
         return body.eval(env);
         // (lambda (...) b1 ... bn)
-        // c.car.cdr = ((...) b1 ... bn).cdr = (b1 ... bn) which is the body of the func
+        // c.fun.cdr = ((...) b1 ... bn).cdr = (b1 ... bn) which is the body of the func
     }
 }

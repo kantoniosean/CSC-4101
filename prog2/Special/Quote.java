@@ -14,6 +14,6 @@ public class Quote extends Special {
 
     public Node eval(Node n, Environment env) {
         // (quote ...) return eval of everything after quote
-        return eval(n.getCdr(), env);
+        return n.getCdr().getCar();
     }
 }

@@ -55,7 +55,7 @@ public class BuiltIn extends Node {
     }
 
     public void error() {
-        System.out.println("Error in arguments :(");
+        System.out.println("Error in arguments");
     }
 
     // The method apply() should be defined in class Node
@@ -73,7 +73,6 @@ public class BuiltIn extends Node {
             second = second.getCar();
         } else {
             second = Nil.getInstance();
-
         }
 
         String name = symbol.getName();
@@ -93,7 +92,7 @@ public class BuiltIn extends Node {
 
             else {
                 error();
-                return new StrLit(":(");
+                return Nil.getInstance();
             }
 
         }
@@ -106,7 +105,7 @@ public class BuiltIn extends Node {
 
             else {
                 error();
-                return new StrLit(":(");
+                return Nil.getInstance();
             }
         }
 
@@ -118,7 +117,7 @@ public class BuiltIn extends Node {
 
             else {
                 error();
-                return new StrLit(":(");
+                return Nil.getInstance();
             }
         }
 
@@ -130,7 +129,7 @@ public class BuiltIn extends Node {
 
             else {
                 error();
-                return new StrLit(":(");
+                return Nil.getInstance();
             }
         }
 
@@ -143,7 +142,7 @@ public class BuiltIn extends Node {
 
             else {
                 error();
-                return new StrLit(":(");
+                return Nil.getInstance();
             }
 
         }
@@ -157,7 +156,7 @@ public class BuiltIn extends Node {
 
             else {
                 error();
-                return new StrLit(":(");
+                return Nil.getInstance();
             }
         }
 
@@ -168,7 +167,7 @@ public class BuiltIn extends Node {
 
             else {
                 error();
-                return new StrLit(":(");
+                return Nil.getInstance();
             }
         }
 
@@ -215,8 +214,7 @@ public class BuiltIn extends Node {
         }
 
         else if (name == "write") {
-            return new StrLit(" ");
-
+            first.print(0);
         }
 
         else if (name == "display") {
@@ -228,7 +226,7 @@ public class BuiltIn extends Node {
         }
 
         else if (name == "eval") {
-            return first;
+            return first.eval(globalEnv);
         }
 
         else if (name == "apply") {
